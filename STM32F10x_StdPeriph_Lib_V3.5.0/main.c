@@ -18,7 +18,8 @@
 extern uint8_t Usart1_RxBuffer[10];
 extern uint8_t Number;
 uint32_t Flash_Address=0x800800a;
-							
+uint8_t Tpt_Hmp_ValueHByte=0;
+uint8_t Tpt_Hmp_ValueLByte=0;	
 int main(void)
 {
 	uint8_t i=0;																 //—≠ª∑±‰¡ø
@@ -77,11 +78,13 @@ int main(void)
 			Temperature_HByre=0;
 			Temperature_LByre=0;
 			Humidity_HByte=0;
-			Humidity_LByte=0;			
-			Temperature_HByre=Usart2_RxBuffer[2];
-			Temperature_LByre=Usart2_RxBuffer[3];
-			Humidity_HByte=Usart2_RxBuffer[4];
-			Humidity_LByte=Usart2_RxBuffer[5];
+			Humidity_LByte=0;
+			Tpt_and_Hmp_Count(Usart2_RxBuffer[2],Usart2_RxBuffer[3]);
+			Temperature_HByre=Tpt_Hmp_ValueHByte;
+			Temperature_LByre=Tpt_Hmp_ValueLByte;
+			Tpt_and_Hmp_Count(Usart2_RxBuffer[4],Usart2_RxBuffer[5]);
+			Humidity_HByte=Tpt_Hmp_ValueHByte;
+			Humidity_LByte=Tpt_Hmp_ValueLByte;
 		}
 		if(Number==8)
 		{
