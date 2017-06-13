@@ -79,12 +79,13 @@ int main(void)
 			Temperature_LByre=0;
 			Humidity_HByte=0;
 			Humidity_LByte=0;
-			Tpt_and_Hmp_Count(Usart2_RxBuffer[2],Usart2_RxBuffer[3]);
+			Tpt_and_Hmp_Count(Usart2_RxBuffer[2],Usart2_RxBuffer[3],Usart2_RxBuffer[1]); 
 			Temperature_HByre=Tpt_Hmp_ValueHByte;
 			Temperature_LByre=Tpt_Hmp_ValueLByte;
-			Tpt_and_Hmp_Count(Usart2_RxBuffer[4],Usart2_RxBuffer[5]);
+			Tpt_and_Hmp_Count(Usart2_RxBuffer[4],Usart2_RxBuffer[5],postlive);          //湿度数据没有负数
 			Humidity_HByte=Tpt_Hmp_ValueHByte;
 			Humidity_LByte=Tpt_Hmp_ValueLByte;
+				
 		}
 		if(Number==8)
 		{

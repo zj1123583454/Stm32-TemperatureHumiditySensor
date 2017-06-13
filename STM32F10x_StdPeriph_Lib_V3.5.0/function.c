@@ -113,13 +113,16 @@ void Flash_Clear(uint32_t address)
 		FLASH_Lock();
 		SEI();		
 }
-void Tpt_and_Hmp_Count(uint8_t HByte,uint8_t LByte)
+void Tpt_and_Hmp_Count(uint8_t HByte,uint8_t LByte,uint8_t type)
 {
 	uint16_t CRCValue1=0x00;
 	uint16_t CRCVlaue2=0x00;
 	Tpt_Hmp_ValueHByte=0;
 	Tpt_Hmp_ValueLByte=0;
 	CRCValue1=((HByte * 256 + LByte)/10);
+	if(type==minus)
+		CRCValue1= -CRCValue1;
+	
 	Tpt_Hmp_ValueLByte=(CRCVlaue2=(CRCValue1<<8))>>8;
 	Tpt_Hmp_ValueHByte=CRCValue1>>8;
 }
